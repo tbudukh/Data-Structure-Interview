@@ -1,0 +1,24 @@
+in this we replace I(from selection and insertion sort) with a heap.
+
+its a selection sort when I is a heap.
+
+start with sorted list S and unsorted list I.
+
+initially we toss all the items from I into the heap h, ignoring the heap order.
+
+h.bottomUpHeap() <- O(n) time.
+
+
+for(i=0;i<n;i++){
+x=h.removeMin();			// this takes O(n log n) time for a heap.
+append x to the end of S.
+}
+
+
+running time = O(n log n)
+
+
+this can be done inplace. --> take the heap and store it backwards in the array i.e. root of the heap is the last element in the heap.
+
+this one is good for sorting arrays, but not very useful for sorting linked list.
+if you want to sort link list then create an array of references and sort them and then rearrange the linkedlist

@@ -1,0 +1,33 @@
+Selection : 
+find the kth smallest key in the list
+
+i.e. item at the index j=k-1 if the list was sorted
+
+so simple approach is to sort list first and ten fidn k-1 indexed item : O(n log n)
+
+e.g. : finding a median in the unsorted list i.e. find item indexed (n-1)/2 if the list was sorted
+
+the algorithm is quickselect --> modified quicksort
+
+quickselect :
+-------------
+find item of index j i.e. (j+1) the smallest key
+
+start with an unsorted list I of input items
+choose a pivot v from I
+partition the I into I1, Iv and I2
+	-- items with same key as pivot can go to any list
+		i.e. if we are doing list based quick sort -> put into Iv
+		if array based quick sort --> put into I1&I2
+if(j < |I1|){
+	recursively find the item with index j in I1 and return it.
+}
+else if(J < |I1| + |Iv|){
+retutn v
+}
+else{
+	recursively find the item with index j-|I1|-|Iv| in I2 and return it.
+}
+
+runs in O(n) avg time if we select pivot randomely
+

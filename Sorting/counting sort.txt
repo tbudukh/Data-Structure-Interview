@@ -1,0 +1,14 @@
+used if all the items are keys and there is no associated values
+
+we won't need any queues
+
+just count copies of each key
+
+just like bucket sort, this doesn't allow many possible keys i.e. the no of different keys is small
+
+takes O(q+n) time where : q= number of different possible keys
+n = number of items we r sorting
+and if q is within small range i.e. q belongs to O(n) then this takes linear time O(n)
+
+array : counting sort takes less memory
+link list : bucket sort is more natural than counting sort

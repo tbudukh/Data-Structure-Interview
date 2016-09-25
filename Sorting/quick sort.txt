@@ -1,0 +1,65 @@
+recursive divide and conquer
+
+fastest known comparison based sort for arrays.
+
+worst case running time is O(n^2) but virtually in practice always works in O(n log n) time.
+
+Algorithm :
+-------------
+start with the list I of n items that we want to sort.
+choose a pivot item v from the list I
+partition our list in 2 unsorted lists I1 and I2.
+	-- I1 has all the keys smaller than v
+	-- I2 has all the keys greater than v
+	--- items with the same key as v can go in either list
+	-- pivot v doesn;t go in either list.
+sort I1 recursively yielding S1
+sort I2 recursively yielding S2
+concat S1,v,S2 in the same order in a sorted list S.
+
+
+worst case time complexity : O(n^2) in case if the input is already sorted.
+
+
+so choosing the first item in the list as the pivot is disastrous.
+
+choosing a pivot :
+----------------------
+--randomely select an item from I as pivot.
+this works when randomized algorithm splits array in 1/4th and 3/4th parts.
+
+-- Median of 3 strategy. you choose 3 pivots and choose median of those 3 as your pivot.
+
+
+
+quicksort on link lists
+------------------------------
+partition link list I in 3 partitions I1, I2 and Iv
+Iv is the list that includes pivot and other elements with the same key.
+sort I1 and I2 as usual, there is no need to sort Iv
+concat S1,Iv, S2
+-- one thing to note is that choosing pivot in link lists is a tedious work.
+
+
+quicksort on arrays :
+---------------------------
+In-place sorting is fast.
+algorithm :
+-----------
+array a
+initially low=0, high=length-1
+sort items a[low]...a[high]
+choose a pivot v randomly.
+swap it with the last item a[high]
+
+i=low-1;j=high		--> i & j sandwitch the items to sort in between them
+Invariants :
+all items at the left of index i will have a key <=pivot
+all items at the right of index j will have a key >=pivot
+advance i to the key >=pivot
+decreement j till key <=pivot
+swap items at i & j
+
+
+repeat the above process till i>=j
+swap pivot back to middle

@@ -1,0 +1,12 @@
+Always runs in O(N^2) time.
+
+we have sorted list S and we have unsorted list I.
+
+for(i=0;i<n;i++){
+X= item in I with smallest key				// this step takes O(N) time
+remove x from I and append to S.
+}
+
+
+whether S is array or link list, this takes O(N^2) even in best case. This can also be done in-place
+

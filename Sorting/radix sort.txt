@@ -1,0 +1,54 @@
+radix sort :
+
+sort 1000 items in range 0...999999...we can't use counting sort or bucket sort on this because we will need 1000000 buckets
+
+radix sort :
+=----------------
+provide q=10 buckets
+sort on first digit only..so that we get big numbers at the right place
+i.e. assume that all the numbers are 6 digits long..if not prepend with 0s
+then put them into their first digit's queue
+
+then we could sort the queues recursively on second digit..then third digit etc..and u get a linear sort
+problem is smaller subsets will b sorted inefficiently..
+
+clever idea :
+-----------------
+keep numbers in one big pile throughout the sort
+sort on last digit first..then the next to last..and so on..most significant digit very last
+
+This works because bucket and counting sort both are stable
+e.g. : i.e once we sort on the last digit the number 55,555,552 is put first and the number 55,555,58 is put second since we'll take its first digit to be 0 as this number has only 7 digits..
+and since bucket sort is stable these two numbers will stay in the same order as we go on sorting on more significant digits..and in the last pass MSD of 2nd number is 0 so it will go to first bucket
+
+
+This algorithm works lot & lot faster if we sort on the 2 digits at a time. i.e. if we assume base = radix = 100
+then you have to use 100 queues at a time.
+or more faster if we use radix = 1000 i.e. 1000 queues.
+
+Since computers use base 2, its more useful to use power of 2 as the radix
+e.g. q=256
+q = # of buckets and at the same time its the radix(base) of digit we use as a sort key
+
+
+Running time :
+---------------
+each pass inspects log q bits of each key at a time
+if all keys are represented in b bits then number of passes is = P = ceiling(b/log q)
+so running time of radix sort  : O( (n+q)* p )
+
+how to choose q ?
+-----------
+choose q belonging to O(n) so then each pass takes linear time
+make q large enough --> # of passes small
+
+so choose q approximately equal to n
+then radix sort takes : O( n+(b/logn)*n ) time
+
+for inte b is constant	--> so radix sort takes linear time O(n)
+
+practical choice :
+------------
+make q be n rounded down to power of two
+to keep memory usage low : keep q = sqroot(n)  rounded down to nearest power of 2.
+

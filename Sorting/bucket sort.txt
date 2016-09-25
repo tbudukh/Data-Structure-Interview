@@ -1,0 +1,24 @@
+works when keys are in small range e.g. : 0 to q-1	q belongs to O(n) i..e q is small
+
+array of q queues numbered from 0 to q-1
+enqueue each item : key i goes into queue i
+starting from first item then, connect the queues to each other till the end
+(see bitmap image in folder to see this in action)
+
+this data structure is exactly like a hash table where each key i maps to bucket i
+
+running time is :
+O(q+n) best and worst time
+
+O(q) to initialize and concat buckets together
+O(n) to put items in the bucket
+
+if q is roughly as the same size as n then we get O(n) time
+
+bucket sort is stable : items with equal keys come out in the same order as they went in
+
+insertion, selection and merge sort can be made stable pretty easily
+
+linked list version of quick sort is stable
+
+heap sort is never stable

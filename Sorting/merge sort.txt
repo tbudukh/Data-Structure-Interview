@@ -1,0 +1,30 @@
+Good for link lists but not so for arrays
+
+you can merge 2 sorted lists into 1 sorted list in linear time
+
+let Q1 and Q2 are 2 sorted queues
+
+let Q be the empty queue
+while(neither of Q1 and Q2 is empty){
+item1=Q1.front();
+item2=Q2.front();
+move smaller item from these 2 into the end of Q.
+}
+
+concat remaining non empty queue (Q1 or Q2) to the end of Q.
+
+
+mergesort is a recursive divide and conquer algorithm.
+
+
+mergesort :
+-------------------
+start with unsorted list I of n items
+break I into I1 and I2 each with n/2 items
+sort I1 recursively giving S1
+sort I2 recursively giving S2
+merge S1 and S2 into a sorted list S.
+
+
+
+it is not an inplace sort. hence its not good for arrays. for arrays it takes double the space of array.

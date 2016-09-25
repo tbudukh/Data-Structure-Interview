@@ -1,0 +1,96 @@
+disjoint sets 
+--no item is in more than 1 sets.
+-- collection of disjoint sets together is called partition.
+
+
+universe of items :
+all items that can be a memmber of set
+each item is in one set
+
+Operations :
+----------------
+union operation : merges 2 sets into 1
+find operation : takes an item and tells us what set it is in
+
+
+List based disjoint sets :
+--------------------
+each set references list of items in the set
+each item references set that contains it
+
+find : O(1) time	since each item knows which set it is in, return that
+union operation : slow, since after merging 2 lists we have to update parent(set) pointer for items in 2nd list
+
+
+Tree based disjoint sets & quick union operation
+-------------------------
+union : O(1)
+find : somewhat slower
+union is more important operation hence it needs to be faster
+
+each set is maintained as a tree
+data structure is a forest
+each item is initially root of its own tree because they r in separate set initially
+
+no child or sibling references needed; only parent is enough
+true identity of each tree is recorded at root
+
+union :
+make root of one set to be child of root of other set
+
+find :
+start at the node --> and follow parent pointers till you go up to root
+-- cost is proportional to the item's depth in tree
+
+To make find operation efficient :
+-------------
+keep items from getting too deep  :  
+	at each root we record the size of the tree and when we do union we r gonna amke smaller tree the child of the root of larger tree	: Union by size strategy
+	
+	
+Implementing quick union with an array :
+-----------------------------------------------
+--items numbered from 0 to n-1
+-- Array records paents of each item
+-- if item has no parent then record size ofits tree
+	to distinguish between parent pointer and size, record size S of the tree as -S
+-- initially since every item is an indepedent set and so size of each set is 1 --> each item of array is -1
+
+(size of the tree : number of nodes in the tree including root )
+
+
+public void union(int root1, int root2){
+if(array[root2]<array[root1]){
+// since size is stored as -ve number, this means that root 2 is a bigger tree
+array[root2]+=array[root1];
+array[root1]=root2;
+}
+else{
+array[root1]+=array[root2];
+array[root2]=root1;
+}
+}
+
+
+path compression :
+----------------------
+if you do a find operation on one node : 
+then adjust all the parent pointers of the nodes from that node to root --> to point to the root
+so that next time find operation will be super fast.
+
+find operation with path compression :
+
+public int find(int x){
+if(array[x]<0)
+return x;
+else{
+array[x]=find(array[x]);	// this is path compression.
+reurn array[x];
+}
+}
+
+running time :
+union : O(1) time
+find operation : O(log u) in worst case --> u = number of unions prior to find
+					
+	avg running time for combination of union find :	close to constant

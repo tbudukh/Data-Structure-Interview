@@ -1,0 +1,23 @@
+O(N^2) time
+
+start with empry list S and unsorted list I of n items.
+
+for(each item X in I){
+insert X into S in sorted order
+}
+
+
+if you maintain S as a link list then it takes O(N) worst case time to find right position where to insert.
+
+
+if S is an array then we can do binary search and it takes O(log N) time, but then to insert a new item we have to shift the entire remaining array to the right by 1 position and that takes O(N).
+
+
+Insertion sort is an in-place sort if S is an array.
+
+
+if the list is already sorted then it runs much faster that N^2.
+
+
+
+if we implement S as a balanced search tree then our algorithm runs in O(N log N) time, because insertion and search take log N time for each N items.
