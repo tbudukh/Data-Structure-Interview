@@ -1,0 +1,23 @@
+Problem statement : Given a two dimensional array of size N X N rotate the array by 90 degrees clockwise. Note that you should not use another array to perform rotation. To put it in another way, you must rotate the array inplace.
+
+Hackerrank link : https://www.hackerrank.com/contests/cs1300-odd-2014/challenges/array-rotation
+
+public static int[][] rotateMatrix(int[][] matrix){
+	// we'll rotate in onion layers
+	int temp,n=matrix.length;
+	// i is the layer variable
+	for(int i=0;i<n/2;i++){
+		for(int j=i;j<n-1-i;j++){
+			temp = matrix[j][n-1-i];
+			matrix[j][n-1-i] = matrix[i][j];
+			matrix[i][j] = temp;
+			temp = matrix[n-1-i][n-1-j];
+			matrix[n-1-i][n-1-j] = matrix[i][j];
+			matrix[i][j] = temp;
+			temp = matrix[n-1-j][i];
+			matrix[n-1-j][i] = matrix[i][j];
+			matrix[i][j] = temp;
+		}
+	}
+	return matrix;
+}
