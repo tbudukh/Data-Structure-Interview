@@ -26,6 +26,7 @@ Tree LCA(Tree t, int p, int q){
     return t;
 }
 ````
+worst case complexity : O(n)
 
 **Attempt 2**  
 Now what if we are not allowed to make the assumption in attempt 1 ? i.e. we don't know if only 1 node is present in the tree or both or none.
