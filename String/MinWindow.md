@@ -6,6 +6,12 @@ Given a set T of characters and a string S, find the minimum window in S which w
 **Attempt 1**  
 Naiive algorithm that first comes to mind after seeing this problem is to search for windows of string T, in S starting from every character in S. So starting from character i, once we find all characters contained in T, in S, we can stop the search at that index j and declare that one window is found. Check if this is the minimus length window yet found and update the counter accordingly.
 
+_example_  
+S : ADOBECODEBANC  
+T : ABC  
+min Window : BANC  
+
+
 ````*.java
 public class Solution {
 	static int[] findMinWindow(String s, String t){
