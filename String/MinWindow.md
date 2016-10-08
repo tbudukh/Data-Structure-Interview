@@ -170,3 +170,7 @@ public class Solution {
 }
 ````
 Time complexity : O(N) where N is the length of string S. This is because of the window logic.
+
+
+**Application of this algorithm**
+[Bear and Steady Gene](https://www.hackerrank.com/challenges/bear-and-steady-gene)

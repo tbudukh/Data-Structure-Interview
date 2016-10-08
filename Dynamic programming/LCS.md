@@ -97,3 +97,4 @@ String printLCS(String s1, String s2, int[][] matrix){
 	return output;
 }
 ````
+Time complexity : O(m*n) where m and n are lengths of strings s1 and s2 respectively.
