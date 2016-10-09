@@ -1,5 +1,6 @@
 # Longest increasing subsequence  
-[Link](http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/)
+[geeks for geeks link](http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/)
+[Hackerrank problem link](https://www.hackerrank.com/challenges/longest-increasing-subsequent)
   
 **problem statement :**  
 Find the length of the longest subsequence of a given sequence such that all elements of the subsequence are sorted in increasing order.  
@@ -16,32 +17,33 @@ T(i) = max {
 ````
 Code :  
 ````*.java
+
 List<Integer> longestIncreasingSubsequence(int[] arr){
-	int[] tempLIS = new int[arr.length];
+	int[] tempLIS = new int[arr.length], previous = new int[arr.length];
 	tempLIS[0] = 1;
+	int maxLength = Integer.MIN_VALUE, bestIndex=0;
 	for(int i=1;i<arr.length;i++){
-		int maxLength = Integer.MIN_VALUE;
+		tempLIS[i] = 1;
 		for(int j=0;j<i;j++){
 			int current = tempLIS[j];
-			if(arr[j]<arr[i])
-				current++;
-			if(current>maxLength)
-				maxLength = current;
+			if(arr[j]<arr[i] && tempLIS[j]+1>tempLIS[i]){
+				tempLIS[i] = tempLIS[j]+1;
+				previous[i] = j;
+			}
 		}
-		tempLIS[i]=maxLength;
+		if(tempLIS[i]>maxLength){
+			maxLength = tempLIS[i];
+			bestIndex = i;
+		}
 	}
-	
-	List<Integer> returnL = new ArrayList<Integer>();
-	int i=0;
-	while(tempLIS[i]==1 && i<tempLIS.length){
-		i++;
+	List<Integer> LIS = new ArrayList<Integer>();
+	int i = bestIndex;
+	while(tempLIS[i]!=1){
+		LIS.add(arr[i]);
+		i = previous[i];
 	}
-	returnL.add(tempLIS[i-1]);
-	for(;i<tempLIS.length;i++){
-		if(tempLIS[i]>tempLIS[i-1])
-			returnL.add(tempLIS[i]);
-	}
-	return returnL;
+	LIS.add(arr[i]);
+	return LIS;
 }
 ````
 Time complexity : O(n^2)
