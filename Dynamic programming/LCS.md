@@ -24,7 +24,7 @@ So instead of using 2 indices each i.e. i,j and k,l we'll just use 1 index per s
 _Base cases :_  
 LCS(0,0)=0, LCS(0, j)=0, LCS(i, 0)=0;
 
-LC[(i, j) = S1[i]==S1[j] ? 1 + LCS(i-1, j-1) : MAX{ LCS(i-1, j), LCS(i, j-1) }
+LCS(i, j) = S1[i]==Ss[j] ? 1 + LCS(i-1, j-1) : MAX{ LCS(i-1, j), LCS(i, j-1) }
 
 So we can hand-run 2nd example as :
 S1 = abkl, S2 = adcb
